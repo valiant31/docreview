@@ -15,8 +15,9 @@
             if ($email == $row["email"]) {
                 if ($password == $row["password"]) {
                     // echo "<br> Login Successful";
-                    //$_SESSION["email"] = $email;
                     $role = $row["role"];
+                    session_start();
+                    $_SESSION["user"] = $email;
                     //TODO Make online
                     break;
                 } else {

@@ -1,7 +1,7 @@
-<!-- <?php
+<?php
   //TODO Session Handling
   session_start();
-?> -->
+?>
 
 <!DOCTYPE html>
 <html lang="en">
