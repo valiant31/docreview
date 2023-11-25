@@ -3,7 +3,7 @@
     session_start();
     $email = $_SESSION["user"];
     
-    $updateStatusStmt = "UPDATE accounts SET status='offline' WHERE email='$email'";
+    $updateStatusStmt = "UPDATE accounts SET status='Offline' WHERE email='$email'";
     mysqli_query($conn, $updateStatusStmt);
 
     session_unset();

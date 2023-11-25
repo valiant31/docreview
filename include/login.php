@@ -1,5 +1,5 @@
 <?php
-    require("db.php");
+    require("db.php");  
     session_start();
 
     if (isset($_POST["login"])) {
@@ -15,7 +15,7 @@
         $loginDetailsRow = $loginDetailsResult -> fetch_assoc();
 
         // Check status
-        if ($loginDetailsRow["status"] == "online") {
+        if ($loginDetailsRow["status"] == "Online") {
             echo '<script>
             alert("User is already logged in.");
             window.location.href="../index.php";
@@ -34,13 +34,13 @@
         mysqli_query($conn, $updateStatusStmt);
 
         // Identify user role then redirect to corresponding page
-        if ($loginDetailsRow["role"] == "admin") {
+        if ($loginDetailsRow["role"] == "Admin") {
             header("Location: admin.php");
         }
-        if ($loginDetailsRow["role"] == "requester") {
+        if ($loginDetailsRow["role"] == "Requester") {
             header("Location: req.php");
         }
-        if ($loginDetailsRow["role"] == "reviewer") {
+        if ($loginDetailsRow["role"] == "Reviewer") {
             header("Location: rev.php");
         }
     } else {
