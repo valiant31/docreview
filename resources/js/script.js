@@ -4,18 +4,18 @@ const registerLink = document.querySelector('.register-link');
 const loginButton = document.querySelector('.cta-button');
 const closeButton = document.querySelector('.icon-close');
 
-registerLink.addEventListener('click', ()=> {
+registerLink.addEventListener('click', () => {
 	wrapper.classList.add('active');
 });
 
-loginLink.addEventListener('click', ()=> {
+loginLink.addEventListener('click', () => {
 	wrapper.classList.remove('active');
 });
 
-loginButton.addEventListener('click', ()=> {
+loginButton.addEventListener('click', () => {
 	wrapper.classList.add('active-popup');
 });
 
-closeButton.addEventListener('click', ()=> {
+closeButton.addEventListener('click', () => {
 	wrapper.classList.remove('active-popup');
 });
