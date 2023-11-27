@@ -1,3 +1,24 @@
+<?php
+  if(session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+  } else {
+    include("db.php");
+    $email = $_SESSION["user"];
+    $loginDetailsStmt = $conn->query("SELECT * FROM accounts WHERE email=$email");
+    $loginDetailsResult = $loginDetailsStmt->get_result();
+    $loginDetailsRow = $loginDetailsResult->fetch_assoc();
+    if ($loginDetailsRow["role"] == "Admin") {
+        header("Location: ../admin-home.php");
+    }
+    if ($loginDetailsRow["role"] == "Requester") {
+        header("Location: ../requester-home.php");
+    }
+    if ($loginDetailsRow["role"] == "Reviewer") {
+        header("Location: ../reviewer-home.php");
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
