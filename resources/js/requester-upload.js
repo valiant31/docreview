@@ -3,7 +3,7 @@ const form = document.querySelector("form"),
   progressArea = document.querySelector(".progress-area"),
   uploadedArea = document.querySelector(".uploaded-area");
 
-form.addEventListener("click", () => {
+form.addEventListener("click", function _listener() {
   fileInput.click();
 });
 
@@ -21,7 +21,7 @@ fileInput.onchange = ({ target }) => {
 
 function uploadFile(name) {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "php/upload.php");
+  xhr.open("POST", "include/upload.php");
   xhr.upload.addEventListener("progress", ({ loaded, total }) => {
     let fileLoaded = Math.floor((loaded / total) * 100);
     let fileTotal = Math.floor(total / 1000);
@@ -52,11 +52,23 @@ function uploadFile(name) {
                               </div>
                             </div>
                             <ion-icon name="checkmark-outline"></ion-icon>
+                            <div class="removefile">
+                            <button onclick="removeFile(this);">Remove</button>
+                            </div>
                           </li>`;
       uploadedArea.classList.remove("onprogress");
       uploadedArea.insertAdjacentHTML("afterbegin", uploadedHTML);
+      fileInput.disabled = true;
+      form.style.cursor = 'default';
     }
   });
   let data = new FormData(form);
   xhr.send(data);
 }
+
+function removeFile(file) {
+  file.parentNode.parentNode.remove();
+  document.getElementById('uploaded').value = "";
+  fileInput.disabled = false;
+  form.style.cursor = 'pointer';
+};

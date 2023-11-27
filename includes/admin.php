@@ -7,7 +7,7 @@ if (isset($_SESSION["user"])) {
 } else {
     echo '<script>
             alert("Log in first.");
-            window.location.href="../index.php";
+            window.location.href="index.php";
             </script>';
     exit();
 }

@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +15,7 @@
   <link rel="icon" type="image/png" href="assets/slu_logo.png">
   <!-- MAIN CSS -->
   <link href="resources/css/user-home.css" rel="stylesheet">
-  <link href="resources/css/user-add.css" rel="stylesheet">
+  <link href="resources/css/requester-add.css" rel="stylesheet">
 </head>
 
 <body>
@@ -32,7 +36,7 @@
       <div class="menu">
         <ul class="menu-links">
           <li class="nav-link">
-            <a href="user-home.html">
+            <a href="requester-home.php">
               <ion-icon name="home-outline"></ion-icon>
               <span class="text nav-text">Home</span>
             </a>
@@ -44,7 +48,7 @@
             </a>
           </li>
           <li class="nav-link">
-            <a href="user-add.html">
+            <a href="requester-add.php">
               <ion-icon name="document-attach-outline"></ion-icon>
               <span class="text nav-text">Add Requests</span>
             </a>
@@ -59,7 +63,7 @@
       </div>
       <div class="bottom-content">
         <li class="">
-          <a href="#">
+          <a href="includes/logout.php">
             <ion-icon name="log-out-outline"></ion-icon>
             <span class="text nav-text">Logout</span>
           </a>
@@ -80,23 +84,19 @@
 
   <section class="home">
     <div class="top">
-      <div class="search-box">
-        <ion-icon name="search-outline" class="search-icon"></ion-icon>
-        <input type="search" placeholder="Search...">
-      </div>
       <div class="profile-details">
         <img src="assets/school.png" alt="">
-        <span class="user_name">Juan Dela Cruz</span>
+        <span class="user_name"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></span>
         <ion-icon name="radio-button-on-outline" class="profile-icon"></ion-icon>
       </div>
     </div>
-
     <div class="home-content">
       <div class="wrapper">
-        <form action="#">
-          <input class="file-input" type="file" name="file" hidden>
+        <form action="includes/upload.php" method="post" enctype="multipart/form-data">
+          <input class="file-input" type="file" name="file" accept=".doc, .docx, .pdf" id="uploaded" hidden>
           <ion-icon name="cloud-upload-outline"></ion-icon>
-          <p>Browse File to Upload</p>
+          <p>Browse File to Upload</p><br>
+          <button type="submit" name="upload">Submit</button>
         </form>
         <section class="progress-area"></section>
         <section class="uploaded-area"></section>
@@ -107,8 +107,8 @@
   <!-- CUSTOM JS -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <script src="user-home.js"></script>
-  <script src="user-add.js"></script>
+  <script src="resources/js/requester-home.js"></script>
+  <script src="resources/js/requester-upload.js"></script>
 </body>
 
 </html>

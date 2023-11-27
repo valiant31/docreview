@@ -1,5 +1,6 @@
 <?php
 session_start();
+include('includes/requester.php');
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +36,7 @@ session_start();
       <div class="menu">
         <ul class="menu-links">
           <li class="nav-link">
-            <a href="user-home.html">
+            <a href="requester-home.php">
               <ion-icon name="home-outline"></ion-icon>
               <span class="text nav-text">Home</span>
             </a>
@@ -47,7 +48,7 @@ session_start();
             </a>
           </li>
           <li class="nav-link">
-            <a href="user-add.html">
+            <a href="requester-add.php">
               <ion-icon name="document-attach-outline"></ion-icon>
               <span class="text nav-text">Add Requests</span>
             </a>
@@ -83,10 +84,6 @@ session_start();
 
   <section class="home">
     <div class="top">
-      <div class="search-box">
-        <ion-icon name="search-outline" class="search-icon"></ion-icon>
-        <input type="search" placeholder="Search...">
-      </div>
       <div class="profile-details">
         <img src="assets/school.png" alt="">
         <span class="user_name"><?php echo $_SESSION["fname"] . " " . $_SESSION["lname"]; ?></span>
@@ -107,7 +104,7 @@ session_start();
   <!-- CUSTOM JS -->
   <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  <script src="user-home.js"></script>
+  <script src="resources/js/requester-home.js"></script>
 </body>
 
 </html>
