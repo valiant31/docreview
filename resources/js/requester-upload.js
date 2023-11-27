@@ -21,7 +21,7 @@ fileInput.onchange = ({ target }) => {
 
 function uploadFile(name) {
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "includes/upload.php");
+  xhr.open("POST", "include/upload.php");
   xhr.upload.addEventListener("progress", ({ loaded, total }) => {
     let fileLoaded = Math.floor((loaded / total) * 100);
     let fileTotal = Math.floor(total / 1000);
@@ -58,6 +58,8 @@ function uploadFile(name) {
                           </li>`;
       uploadedArea.classList.remove("onprogress");
       uploadedArea.insertAdjacentHTML("afterbegin", uploadedHTML);
+      fileInput.disabled = true;
+      form.style.cursor = 'default';
     }
   });
   let data = new FormData(form);
@@ -67,4 +69,6 @@ function uploadFile(name) {
 function removeFile(file) {
   file.parentNode.parentNode.remove();
   document.getElementById('uploaded').value = "";
+  fileInput.disabled = false;
+  form.style.cursor = 'pointer';
 };

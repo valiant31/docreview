@@ -94,12 +94,12 @@ session_start();
       <div class="wrapper">
         <form action="includes/upload.php" method="post" enctype="multipart/form-data">
           <input class="file-input" type="file" name="file" accept=".doc, .docx, .pdf" id="uploaded" hidden>
-          <ion-icon name="cloud-upload-outline" id="icon"></ion-icon>
+          <ion-icon name="cloud-upload-outline"></ion-icon>
           <p>Browse File to Upload</p><br>
           <button type="submit" name="upload">Submit</button>
         </form>
         <section class="progress-area"></section>
-          <section class="uploaded-area"></section>
+        <section class="uploaded-area"></section>
       </div>
   </section>
 

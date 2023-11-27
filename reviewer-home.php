@@ -1,5 +1,8 @@
 <?php
 session_start();
+require("includes/db.php");
+include("includes/reviewer.php");
+$result = $conn->query("SELECT * FROM transaction");
 ?>
 
 <!DOCTYPE html>
@@ -34,12 +37,6 @@ session_start();
     <div class="menu-bar">
       <div class="menu">
         <ul class="menu-links">
-          <li class="nav-link">
-            <a href="#">
-              <ion-icon name="home-outline"></ion-icon>
-              <span class="text nav-text">Home</span>
-            </a>
-          </li>
           <li class="nav-link">
             <a href="#">
               <ion-icon name="file-tray-stacked-outline"></ion-icon>
@@ -94,7 +91,32 @@ session_start();
       <div class="overview">
         <div class="title">
           <ion-icon name="bar-chart-outline" class="content-icon"></ion-icon>
-          <span class="text">Home</span>
+          <span class="text">Approvals</span>
+        </div>
+        <div>
+          <table style="width:600px; line-height:40px;">
+            <tr>
+            </tr>
+            <th> Document ID </th>
+            <th> Email </th>
+            <th> Status </th>
+            <th> Uploaded Date </th>
+            <th> Approved Date </th>
+            </tr>
+            <?php
+            $rows = $result->fetch_assoc();
+            for ($i = 0; $i < $result->num_rows; $i++) {
+            ?>
+              <tr>
+                <td><?php echo $rows['document_id']; ?></td>
+                <td><?php echo $rows['email']; ?></td>
+                <td><?php echo $rows['status']; ?></td>
+                <td><?php echo $rows['uploaded_date']; ?></td>
+                <td><?php echo $rows['approved_date']; ?></td>
+              </tr>
+            <?php
+            }
+            ?>
         </div>
       </div>
   </section>

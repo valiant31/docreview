@@ -1,5 +1,5 @@
 <?php
-if(session_status() !== PHP_SESSION_ACTIVE) session_start();
+session_start();
 if (isset($_SESSION["user"])) {
     require("db.php");
     $sql = "SELECT * FROM accounts";
@@ -7,7 +7,7 @@ if (isset($_SESSION["user"])) {
 } else {
     echo '<script>
             alert("Log in first.");
-            window.location.href="../index.php";
+            window.location.href="index.php";
             </script>';
     exit();
 }
