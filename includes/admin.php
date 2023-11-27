@@ -50,26 +50,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['add_user'])) {
 
 // Update User
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_user'])) {
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $originalEmail = mysqli_real_escape_string($conn, $_POST['original_email']);
+    $updatedEmail = mysqli_real_escape_string($conn, $_POST['updated_email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $firstName = mysqli_real_escape_string($conn, $_POST['firstName']);
     $lastName = mysqli_real_escape_string($conn, $_POST['lastName']);
     $role = mysqli_real_escape_string($conn, $_POST['role']);
 
-    $checkEmailQuery = "SELECT * FROM accounts WHERE email='$email'";
-    $result = $conn->query($checkEmailQuery);
+    $checkUpdatedEmailQuery = "SELECT * FROM accounts WHERE email='$updatedEmail' AND email<>'$originalEmail'";
+    $resultUpdatedEmail = $conn->query($checkUpdatedEmailQuery);
 
-    if ($result->num_rows > 0) {
-        $sql = "UPDATE accounts SET password='$password', 
-                firstName='$firstName', lastName='$lastName', role='$role' WHERE email='$email'";
+    if ($resultUpdatedEmail->num_rows > 0) {
+        echo "Error: User with the updated email already exists.";
+    } else {
+        $updateQuery = "UPDATE accounts SET email='$updatedEmail', password='$password', 
+            firstName='$firstName', lastName='$lastName', role='$role' WHERE email='$originalEmail'";
 
-        if ($conn->query($sql) === TRUE) {
+        if ($conn->query($updateQuery) === TRUE) {
             echo "User updated successfully!";
         } else {
             echo "Error updating user: " . $conn->error;
         }
-    } else {
-        echo "Error: User with this email does not exist.";
     }
 }
 
